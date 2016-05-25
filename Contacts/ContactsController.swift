@@ -12,6 +12,7 @@ class ContactsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        onoff(false)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -31,17 +32,44 @@ class ContactsController: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var changedate: UIButton!
     
+
+    
     @IBAction func sgmtSwitch(sender: AnyObject) {
         //ask switch if its edit or view//
         let segment = sender as! UISegmentedControl
-        
         if (segment.titleForSegmentAtIndex(segment.selectedSegmentIndex) == "View"){
-            contact.enabled = false;
+            onoff(false);
         }
+        else{
+            onoff(true);
+        }
+        
         
     }
     
     func onoff(passed: Bool){
+        if(passed == false){
+            contact.enabled = false;
+            address.enabled = false;
+            cell.enabled = false;
+            home.enabled = false;
+            city.enabled = false;
+            state.enabled = false;
+            zip.enabled = false;
+            email.enabled = false;
+            changedate.hidden =  true;
+        }
+        if(passed == true){
+            contact.enabled = true;
+            address.enabled = true;
+            cell.enabled = true;
+            home.enabled = true;
+            city.enabled = true;
+            state.enabled = true;
+            zip.enabled = true;
+            email.enabled = true;
+            changedate.hidden =  false;
+        }
         
     }
     
